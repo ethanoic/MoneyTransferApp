@@ -16,9 +16,9 @@ public class Users {
 	public Response Create(CreateUser user) {
 		
 		// send to manager class to add to db
-		manager.CreateUser(user);
+		int id = manager.CreateUser(user);
 		
-		return Response.ok().build();
+		return Response.ok(id).build();
 	}
 	
 }
