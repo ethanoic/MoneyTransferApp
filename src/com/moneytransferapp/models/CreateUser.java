@@ -14,4 +14,7 @@ public class CreateUser {
 	
 	@JsonProperty("mobile")
 	public String Mobile;
+	
+	@JsonProperty("password")
+	public String Password;
 }

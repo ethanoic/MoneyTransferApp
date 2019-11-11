@@ -5,5 +5,6 @@ public class MoneyTransferApplication extends ResourceConfig {
 	public MoneyTransferApplication() {
 		packages("com.moneytransferapp.resources");
 		register(com.moneytransferapp.application.MyJacksonFeature.class);
+		register(com.moneytransferapp.auth.ApiKeyFilter.class);
 	}
 }
