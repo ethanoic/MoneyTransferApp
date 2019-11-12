@@ -18,7 +18,7 @@ public class Auth {
 			@FormParam("password") String password) {
 		
 		// auth manager to validate username and password
-		String token = authManager.Authenticate(username, password);
+		String token = authManager.AuthenticateGetJWT(username, password);
 		
 		return Response.ok(token).build();
 	}

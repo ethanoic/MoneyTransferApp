@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import com.moneytransferapp.auth.jwt.JWTToken;
+import com.moneytransferapp.auth.jwt.jwtIssuer;
 import com.moneytransferapp.database.ConnectionManager;
 
 public class AuthManager {
@@ -25,6 +27,19 @@ public class AuthManager {
 			ex.printStackTrace();
 		}
 		return isValid;
+	}
+	
+	public String AuthenticateGetJWT(String username, String password) {
+		String token = "";
+		
+		// Check username and password
+		if (userManager.IsUserValid(username, password)) {
+			// Generate token
+			token = JWTToken.createJWT(jwtIssuer.getId(), jwtIssuer.getIssuer(), 
+					"auth", "", "user", "", 600000);
+		}
+		
+		return token;
 	}
 	
 	public String Authenticate(String username, String password) {
