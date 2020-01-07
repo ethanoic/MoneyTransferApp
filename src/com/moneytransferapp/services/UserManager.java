@@ -9,8 +9,76 @@ import java.sql.ResultSet;
 
 import com.moneytransferapp.database.ConnectionManager;
 import com.moneytransferapp.models.CreateUser;
+import com.moneytransferapp.models.GetTransactionModel;
+import com.moneytransferapp.models.GetUserModel;
+import com.moneytransferapp.models.GetUserProfileModel;
 
 public class UserManager {
+	
+	public GetUserProfileModel GetUserProfile(int id) {
+		GetUserProfileModel profile = new GetUserProfileModel();
+		
+		try {
+			Connection conn = ConnectionManager.Get();
+			PreparedStatement stmt = conn.prepareStatement("SELECT name, email, phone FROM users"
+					+ " WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rsUser = stmt.executeQuery();
+			if (rsUser.next()) {
+				profile.Name = rsUser.getString("name");
+				profile.Email = rsUser.getString("email");
+				profile.Phone = rsUser.getString("phone");
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return profile;
+	}
+	
+	public GetUserModel GetUser(int id) {
+		GetUserModel user = new GetUserModel();
+		boolean isGetUserSuccess = true;
+		
+		try {
+			// get user from user table
+			Connection conn = ConnectionManager.Get();
+			PreparedStatement stmt = conn.prepareStatement("SELECT name, email, phone FROM users"
+					+ " WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rsUser = stmt.executeQuery();
+			if (rsUser.next()) {
+				user.Profile.Name = rsUser.getString("name");
+				user.Profile.Email = rsUser.getString("email");
+				user.Profile.Phone = rsUser.getString("phone");
+			} else {
+				// failed somehow??.. 
+				isGetUserSuccess = false;
+			}
+			
+			if (isGetUserSuccess) {
+				// get transactions of user from transactions table
+				stmt = conn.prepareStatement("SELECT * FROM `transactions`" 
+								+ " WHERE recipientid = ? OR senderid = ?");
+				stmt.setInt(1, id);
+				stmt.setInt(2, id);
+				ResultSet rsTransactions = stmt.executeQuery();
+				while (rsTransactions.next()) {
+					GetTransactionModel tx = new GetTransactionModel();
+					tx.Amount = rsTransactions.getDouble("amount");
+					tx.BankAccount = rsTransactions.getString("bankaccount");
+					tx.transactiondatetime = rsTransactions.getDate("transactiondatetime");
+					
+					user.Transactions.add(tx);
+				}
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		
+		return user;
+	}
 	
 	public Boolean IsUserValid(String username, String password) {
 		Boolean isValid = false;
