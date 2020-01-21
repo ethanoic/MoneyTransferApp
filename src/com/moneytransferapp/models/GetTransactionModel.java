@@ -23,4 +23,7 @@ public class GetTransactionModel {
 
 	@JsonProperty("transactiondatetime")
 	public Date transactiondatetime;
+	
+	@JsonProperty("status")
+	public int status;
 }

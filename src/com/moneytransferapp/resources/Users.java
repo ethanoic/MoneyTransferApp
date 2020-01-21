@@ -14,6 +14,11 @@ import com.moneytransferapp.services.UserManager;
 @Path("users")
 public class Users {
 	
+	@Path("{userId}/transactions")
+	public Transactions GetTransactions(@PathParam("userId") int userId) {
+		return new Transactions(userId);
+	}
+	
 	private UserManager manager = new UserManager();
 	@POST
 	@Consumes({"application/json","application/xml"})
@@ -35,4 +40,5 @@ public class Users {
 		
 		return Response.ok(user).build();
 	}
+	
 }
