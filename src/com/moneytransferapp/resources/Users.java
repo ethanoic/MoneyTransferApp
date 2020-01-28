@@ -15,8 +15,13 @@ import com.moneytransferapp.services.UserManager;
 public class Users {
 	
 	@Path("{userId}/transactions")
-	public Transactions GetTransactions(@PathParam("userId") int userId) {
+	public Transactions Transactions(@PathParam("userId") int userId) {
 		return new Transactions(userId);
+	}
+	
+	@Path("{userId}/contacts")
+	public Contacts Contacts(@PathParam("userid") int userId) {
+		return new Contacts(userId);
 	}
 	
 	private UserManager manager = new UserManager();
