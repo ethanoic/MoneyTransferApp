@@ -27,14 +27,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/users",
-					"protocol": "http",
+					"raw": "{{host}}/users",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"users"
 					]
 				}
@@ -63,14 +60,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/users",
-					"protocol": "http",
+					"raw": "{{host}}/users",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"users"
 					]
 				}
@@ -94,25 +88,22 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "user",
+							"value": "john@mail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "pwd",
+							"value": "1234",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/auth",
-					"protocol": "http",
+					"raw": "{{host}}/auth",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"auth"
 					]
 				}
@@ -145,14 +136,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/transactions",
-					"protocol": "http",
+					"raw": "{{host}}/transactions",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"transactions"
 					]
 				}
@@ -175,14 +163,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/transactions",
-					"protocol": "http",
+					"raw": "{{host}}/transactions",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"transactions"
 					]
 				}
@@ -195,14 +180,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/users/9",
-					"protocol": "http",
+					"raw": "{{host}}/users/9",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"users",
 						"9"
 					]
@@ -216,14 +198,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/v2/users/9",
-					"protocol": "http",
+					"raw": "{{host}}/v2/users/9",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"v2",
 						"users",
 						"9"
@@ -264,14 +243,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/transactions",
-					"protocol": "http",
+					"raw": "{{host}}/transactions",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"transactions"
 					]
 				}
@@ -294,14 +270,11 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/MoneyTransferApp/users/7/transactions?page=2&pageSize=2",
-					"protocol": "http",
+					"raw": "{{host}}/users/7/transactions?page=2&pageSize=2",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
-						"MoneyTransferApp",
 						"users",
 						"7",
 						"transactions"
@@ -315,6 +288,36 @@
 							"key": "pageSize",
 							"value": "2"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtb25leXRyYW5zZmVyYXBwIiwiaWF0IjoxNTgwMjA5ODU2LCJzdWIiOiJhdXRoIiwicm9sZSI6InVzZXIiLCJuYW1lIjoiIiwiaXNzIjoibW9uZXl0cmFuc2Zlci5hcHAiLCJleHAiOjE1ODAyMTA0NTZ9.CSkTd2GH4xaO4tKhsr6fXYed67QgHpSadIDbuDj-l1Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users/7/contacts/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"7",
+						"contacts",
+						"2"
 					]
 				}
 			},

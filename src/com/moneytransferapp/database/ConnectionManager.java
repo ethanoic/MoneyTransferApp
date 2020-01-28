@@ -15,9 +15,20 @@ public class ConnectionManager {
 			ex.printStackTrace();
 		}
 		
+
+		String connectionString = "mysql://localhost/moneytransferapp?" +
+			"user=root&password=1234&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost/moneytransferapp?" +
-				"user=root&password=1234&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+			String cleardbDBUrl = System.getenv().get("CLEARDB_DATABASE_URL");
+			if (cleardbDBUrl != null)
+				connectionString = cleardbDBUrl;
+		} catch (Exception ex) {
+			// no system env connection string available
+		}
+			
+		try {
+			conn = DriverManager.getConnection("jdbc:" + connectionString);
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 		}

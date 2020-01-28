@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `moneytransferapp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `moneytransferapp`;
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: moneytransferapp
@@ -23,14 +21,13 @@ USE `moneytransferapp`;
 
 DROP TABLE IF EXISTS `auth`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `auth` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   `datecreated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,12 +41,37 @@ INSERT INTO `auth` VALUES (2,'705b46b7-ea4a-46c2-9068-0ed8a207e644','john@mail.c
 UNLOCK TABLES;
 
 --
+-- Table structure for table `contacts`
+--
+
+DROP TABLE IF EXISTS `contacts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+CREATE TABLE `contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `mobile` varchar(25) DEFAULT NULL,
+  `userid` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contacts`
+--
+
+LOCK TABLES `contacts` WRITE;
+/*!40000 ALTER TABLE `contacts` DISABLE KEYS */;
+INSERT INTO `contacts` VALUES (3,'Baker','80001125',7);
+/*!40000 ALTER TABLE `contacts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `transactions`
 --
 
 DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `transactions` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `amount` double NOT NULL DEFAULT '0',
@@ -59,7 +81,7 @@ CREATE TABLE `transactions` (
   `transactiondatetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +100,6 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(150) DEFAULT NULL,
@@ -86,7 +107,7 @@ CREATE TABLE `users` (
   `phone` varchar(45) DEFAULT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +116,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (7,'John Lee','john@mail.com','88776611','1234'),(8,'Ace','ace@mail.com','9998765','1234'),(9,'Tom GaN','tomgan@mail.com','78887123','1234'),(10,'Elaine','elaine@mail.com','88901222','1234');
+INSERT INTO `users` VALUES (7,'John Lee','john@mail.com','88776611','1234'),(8,'Ace','ace@mail.com','9998765','1234'),(9,'Tom GaN','tomgan@mail.com','78887123','1234'),(10,'Elaine','elaine@mail.com','88901222','1234'),(11,'John Lee','john@mail.com','88776611','1234'),(12,'John Lee','john@mail.com','88776611','1234');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +129,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-21 21:02:01
+-- Dump completed on 2020-01-28 20:46:13
